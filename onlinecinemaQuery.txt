@@ -1,0 +1,31 @@
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    role ENUM('user', 'admin') NOT NULL
+);
+
+
+CREATE TABLE movies (
+    movie_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    description TEXT,
+    release_date DATE,
+    ticket_price DECIMAL(8, 2) NOT NULL
+);
+
+
+CREATE TABLE purchased_tickets (
+    ticket_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    movie_id INT NOT NULL,
+    purchase_date TIMESTAMP NOT NULL,
+    ticket_status ENUM('purchased', 'canceled') NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (user_id),
+    FOREIGN KEY (movie_id) REFERENCES movies (movie_id)
+);
+
+
+Images/userpic.jpg
